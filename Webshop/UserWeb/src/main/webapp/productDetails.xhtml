@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<style>
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+	.btn-primary.active, .open .dropdown-toggle.btn-primary {
+	background-color: #A6A8C1;
+	border-color: #31347B;
+}
+
+.btn {
+	background-color: #9F418F;
+	border-color: #9F418F;
+}
+</style>
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="WebShop" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<div style="border-bottom: 1px solid #E5E5E5;">
+				<h3>
+					<h:outputText value="Product List" />
+					<!-- <a class="btn btn-large pull-right" href="#"><i class="icon-star"></i> O</a> -->
+					<p:commandButton styleClass="btn btn-large"
+						value="View Shopping Car" type="button" onclick="dlg2.show();" />
+					<!--  <h:link outcome="login" value="Login" /> -->
+				</h3>
+			</div>
+
+			<p:dataTable id="dataTable" var="product" value="#{productList}"
+				paginator="true" rows="5"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
+				<p:column>
+					<f:facet name="header">#</f:facet>
+					<h:outputText value="#{product.productId}" />
+				</p:column>
+
+				<p:column sortBy="Name">
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{product.name}" />
+				</p:column>
+
+				<p:column sortBy="Description">
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{product.description}" />
+				</p:column>
+
+				<p:column sortBy="Quantity">
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{product.price}" />
+				</p:column>
+
+				<p:column sortBy="Quantity">
+					<f:facet name="header">
+						<h:outputText value="Quantity" />
+					</f:facet>
+					<h:outputText value="#{product.price}" />
+				</p:column>
+
+				<p:column sortBy="Add to Shopping Cart">
+					<f:facet name="header">
+						<h:outputText value="Add to Shopping Cart" />
+					</f:facet>
+					<h:selectBooleanCheckbox value="#{product.selected}" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+			<h:commandButton title="selectItems" styleClass="btn"
+				value="Add to Shopping Cart"
+				actionListener="#{productBean.getSelectedItems}" />
+		</h:form>
+
+		<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true"
+			width="300" height="200">
+			<h:form>
+				<p:dataTable id="dataTable1" var="product"
+					value="#{productBean.shoppingCart}" rows="5">
+					<p:column>
+						<f:facet name="header">#</f:facet>
+						<h:outputText value="#{product.productId}" />
+					</p:column>
+
+					<p:column sortBy="Name">
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{product.name}" />
+					</p:column>
+
+
+				</p:dataTable>
+				<br />
+				<h:link styleClass="btn" outcome="login" value="Order" />
+			</h:form>
+		</p:dialog>
+		<h:messages />
+	</ui:define>
+</ui:composition>
+</html>

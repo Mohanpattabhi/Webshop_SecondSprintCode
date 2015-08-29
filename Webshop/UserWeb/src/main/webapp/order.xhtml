@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<style>
+.white {
+	color: #000;
+	background-color: #fff;
+}
+
+.btn-facebook {
+	color: #ffffff;
+	-webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #2b4b90;
+	*background-color: #133783;
+	background-image: -moz-linear-gradient(top, #3b5998, #133783);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3b5998),
+		to(#133783));
+	background-image: -webkit-linear-gradient(top, #3b5998, #133783);
+	background-image: -o-linear-gradient(top, #3b5998, #133783);
+	background-image: linear-gradient(to bottom, #3b5998, #133783);
+	background-repeat: repeat-x;
+	border-color: #133783 #133783 #091b40;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998',
+		endColorstr='#ff133783', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active,
+	.btn-facebook.active, .btn-facebook.disabled, .btn-facebook[disabled] {
+	color: #ffffff;
+	background-color: #133783 !important;
+	*background-color: #102e6d !important;
+}
+
+.btn-facebook:active, .btn-facebook.active {
+	background-color: #0d2456\9 !important;
+}
+</style>
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="WebShop" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputText value="#{productBean.totalPrice}" />
+			<p:dataTable id="dataTable" var="product"
+				value="#{productBean.shoppingCart}">
+				<p:column>
+					<f:facet name="header">#</f:facet>
+					<h:outputText value="#{product.productId}" />
+				</p:column>
+
+				<p:column sortBy="Name">
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{product.name}" />
+				</p:column>
+
+				<p:column sortBy="Description">
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{product.description}" />
+				</p:column>
+
+				<p:column sortBy="Price">
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{product.price}" />
+				</p:column>
+
+
+
+				<p:columnGroup type="footer">
+					<p:row>
+						<p:column colspan="3" style="text-align:right"
+							footerText="Totals:" />
+						<p:column footerText="#{productBean.totalPrice}" />
+
+
+					</p:row>
+				</p:columnGroup>
+			</p:dataTable>
+
+			<h:commandButton id="button" value="Order"
+				styleClass="btn btn-lg btn-success btn-block"
+				action="#{productBean.doOrder}" />
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

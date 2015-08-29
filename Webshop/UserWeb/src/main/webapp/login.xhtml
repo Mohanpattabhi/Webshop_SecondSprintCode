@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<style>
+.white {
+	color: #000;
+	background-color: #fff;
+}
+
+.btn-facebook {
+	color: #ffffff;
+	-webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #2b4b90;
+	*background-color: #133783;
+	background-image: -moz-linear-gradient(top, #3b5998, #133783);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3b5998),
+		to(#133783));
+	background-image: -webkit-linear-gradient(top, #3b5998, #133783);
+	background-image: -o-linear-gradient(top, #3b5998, #133783);
+	background-image: linear-gradient(to bottom, #3b5998, #133783);
+	background-repeat: repeat-x;
+	border-color: #133783 #133783 #091b40;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998',
+		endColorstr='#ff133783', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active,
+	.btn-facebook.active, .btn-facebook.disabled, .btn-facebook[disabled] {
+	color: #ffffff;
+	background-color: #133783 !important;
+	*background-color: #102e6d !important;
+}
+
+.btn-facebook:active, .btn-facebook.active {
+	background-color: #0d2456\9 !important;
+}
+</style>
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="WebShop" />
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h:form>
+								<fieldset>
+									<div class="form-group">
+
+										<p:inputText id="userName"
+											value="#{registrationBean.userName}" required="true"
+											style="height:30px" styleClass="form-control"
+											label="userName" />
+										<p:watermark for="userName" value="enter username"
+											id="watermark" />
+
+
+									</div>
+									<div class="form-group">
+										<p:inputText id="password"
+											value="#{registrationBean.password}" required="true"
+											style="height:30px" styleClass="form-control"
+											label="password" />
+										<p:watermark for="password" value="enter password"
+											id="watermark1" />
+
+									</div>
+									<h:commandButton id="button" value="Login"
+										styleClass="btn btn-lg btn-success btn-block"
+										action="#{registrationBean.doLogin}" />
+									<br /> <br />
+
+								</fieldset>
+
+								<h:link styleClass="btn btn-lg btn-success btn-block"
+									outcome="register" value="SignUp">
+								</h:link>
+
+
+							</h:form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

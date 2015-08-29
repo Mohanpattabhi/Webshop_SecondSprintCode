@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="WebShop" />
+	</ui:define>
+
+	<ui:define name="content">
+	<h:form>
+		<div style="border-bottom: 1px solid #E5E5E5;">
+			<h3>
+				<h:outputText value="Invoice" />
+			</h3>
+		</div>
+<div class="row-fluid">
+  <div class="span12">
+    Fluid 12
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="row-fluid">
+          <div class="span6">Invoice Number</div>
+          <div class="span6"><h:outputText value="#{productBean.orderEntity.orderId}" /></div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">Shipping Address</div>
+          <div class="span6"><h:outputText value="#{productBean.orderEntity.shippingAddress}" /></div>
+        </div>
+        
+        <div class="row-fluid">
+          <div class="span6">City</div>
+          <div class="span6"><h:outputText value="#{productBean.orderEntity.shippingCity}" /></div>
+        </div>
+        
+        <div class="row-fluid">
+          <div class="span6"></div>
+          <div class="span6"></div>
+        </div>
+      </div>
+      <div class="span6"></div>
+    </div>
+  </div>
+</div>
+			
+</h:form>		
+</ui:define>
+</ui:composition>
+</html>
